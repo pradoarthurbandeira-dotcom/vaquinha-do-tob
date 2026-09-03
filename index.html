@@ -3,110 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaquinha do Tob - Financiamento Coletivo</title>
+    <title>🐄 Vaquinha do Tob - Financiamento Coletivo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">🐄 Vaquinha do Tob</div>
-            <ul class="nav-links">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>🐄 Vaquinha do Tob</h1>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Home</a></li>
                 <li><a href="#campanhas">Campanhas</a></li>
                 <li><a href="#como-funciona">Como Funciona</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="#" class="btn-entrar">Entrar</a></li>
+                <li><button class="btn-login" id="btnAuth">Login</button></li>
             </ul>
-        </nav>
-    </header>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Realize seus Sonhos com Vaquinha do Tob</h1>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h2>Realize seus Sonhos com Vaquinha do Tob</h2>
             <p>Reúna pessoas para financiar seus projetos, ideias e causas</p>
-            <button class="btn-cta">Criar uma Vaquinha</button>
+            <button class="btn-cta" id="btnCriarVaquinha">Criar uma Vaquinha</button>
         </div>
     </section>
 
-    <section id="campanhas" class="campanhas">
-        <h2>Campanhas em Destaque</h2>
-        <div class="grid-campanhas">
-            <div class="card-campanha">
-                <div class="imagem-placeholder">📚</div>
-                <h3>Biblioteca Comunitária</h3>
-                <p class="meta">R$ 5.000 de R$ 10.000</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 50%"></div>
-                </div>
-                <p>Ajude a criar uma biblioteca para a comunidade local</p>
-                <button class="btn-apoiar">Apoiar</button>
+    <!-- Modal de Login/Registro -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeAuth">&times;</span>
+            <div class="form-container">
+                <h2 id="authTitle">Login</h2>
+                <form id="authForm">
+                    <input type="email" id="authEmail" placeholder="Email" required>
+                    <input type="password" id="authPassword" placeholder="Senha" required>
+                    <input type="text" id="authNome" placeholder="Nome completo" style="display:none;">
+                    <input type="text" id="authCPF" placeholder="CPF" style="display:none;">
+                    <input type="password" id="authPasswordConfirm" placeholder="Confirmar Senha" style="display:none;">
+                    <button type="submit" class="btn-cta">Entrar</button>
+                </form>
+                <p id="authToggle">Não tem conta? <a href="#">Registre-se</a></p>
             </div>
+        </div>
+    </div>
 
-            <div class="card-campanha">
-                <div class="imagem-placeholder">🎬</div>
-                <h3>Filme Independente</h3>
-                <p class="meta">R$ 12.000 de R$ 25.000</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 48%"></div>
-                </div>
-                <p>Financie um filme independente revolucionário</p>
-                <button class="btn-apoiar">Apoiar</button>
-            </div>
-
-            <div class="card-campanha">
-                <div class="imagem-placeholder">🌱</div>
-                <h3>Horta Urbana</h3>
-                <p class="meta">R$ 8.500 de R$ 15.000</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 57%"></div>
-                </div>
-                <p>Projeto de sustentabilidade no coração da cidade</p>
-                <button class="btn-apoiar">Apoiar</button>
+    <!-- Campanhas Section -->
+    <section class="campanhas" id="campanhas">
+        <div class="container">
+            <h2>Campanhas em Destaque</h2>
+            <div class="campanhas-grid" id="campanhasGrid">
+                <!-- Campanhas serão carregadas aqui via JavaScript -->
             </div>
         </div>
     </section>
 
-    <section id="como-funciona" class="como-funciona">
-        <h2>Como Funciona</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Crie sua Campanha</h3>
-                <p>Descreva seu projeto com fotos e vídeos atraentes</p>
+    <!-- Modal de Campanha Detalhes -->
+    <div id="campanhaModal" class="modal">
+        <div class="modal-content modal-campanha">
+            <span class="close" id="closeCampanha">&times;</span>
+            <div id="campanhaDetalhes">
+                <!-- Detalhes da campanha serão carregados aqui -->
             </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Defina a Meta</h3>
-                <p>Escolha o valor e o prazo para arrecadação</p>
+        </div>
+    </div>
+
+    <!-- Modal de Pagamento Pix -->
+    <div id="pixModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closePix">&times;</span>
+            <div class="pix-container">
+                <h2>Apoiar com Pix</h2>
+                <input type="number" id="valorPix" placeholder="Valor em R$" min="1" required>
+                <button class="btn-cta" id="btnGerarPix">Gerar QR Code</button>
+                <div id="pixResult" style="display:none;">
+                    <div id="qrCodeContainer"></div>
+                    <p>Chave Pix: <strong id="pixKey"></strong></p>
+                    <p>Banco: <strong id="pixBanco"></strong></p>
+                    <button class="btn-cta" id="btnConfirmarPix">Confirmar Pagamento</button>
+                </div>
             </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Compartilhe</h3>
-                <p>Divulgue nas redes sociais e para seus contatos</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Receba Apoio</h3>
-                <p>Acompanhe as contribuições em tempo real</p>
+        </div>
+    </div>
+
+    <!-- Como Funciona -->
+    <section class="como-funciona" id="como-funciona">
+        <div class="container">
+            <h2>Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Crie uma Campanha</h3>
+                    <p>Descreva seu projeto, defina a meta e compartilhe sua história</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Compartilhe</h3>
+                    <p>Envie o link para amigos, familiares e redes sociais</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Receba Apoio</h3>
+                    <p>As pessoas apoiam via Pix e sua campanha cresce</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Realize seu Sonho</h3>
+                    <p>Atinja a meta e transforme sua ideia em realidade</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="contato">
-        <h2>Entre em Contato</h2>
-        <form class="form-contato">
-            <input type="text" placeholder="Seu Nome" required>
-            <input type="email" placeholder="Seu Email" required>
-            <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
-            <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-        </form>
+    <!-- Contato -->
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <form class="form-contato" id="formContato">
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu Email" required>
+                <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                <button type="submit" class="btn-cta">Enviar Mensagem</button>
+            </form>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Vaquinha do Tob - Financiamento Coletivo. Todos os direitos reservados.</p>
-        <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Vaquinha do Tob. Todos os direitos reservados.</p>
+            <p>Criado com ❤️ por Prado Arthur Bandeira</p>
         </div>
     </footer>
 
