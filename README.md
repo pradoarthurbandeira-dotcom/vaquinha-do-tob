@@ -1,4 +1,4 @@
-# 🐄 Vaquinha - Site de Financiamento Coletivo
+# 🐄 Vaquinha do Tob - Site de Financiamento Coletivo
 
 Um site moderno e responsivo para plataforma de financiamento coletivo (crowdfunding).
 
@@ -21,8 +21,8 @@ Um site moderno e responsivo para plataforma de financiamento coletivo (crowdfun
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/vaquinha-site.git
-cd vaquinha-site
+git clone https://github.com/seu-usuario/vaquinha-do-tob.git
+cd vaquinha-do-tob
 ```
 
 2. Abra o arquivo `index.html` no seu navegador:
@@ -39,7 +39,7 @@ python -m http.server 8000
 ## 📁 Estrutura do Projeto
 
 ```
-vaquinha-site/
+vaquinha-do-tob/
 ├── index.html      # Arquivo principal HTML
 ├── styles.css      # Estilos CSS
 ├── script.js       # JavaScript para interatividade
