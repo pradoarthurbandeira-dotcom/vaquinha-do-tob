@@ -14,7 +14,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Botão Criar uma Vaquinha
 document.querySelector('.btn-cta').addEventListener('click', function () {
-    alert('Redirecionando para criação de campanha...');
+    alert('Funcionalidade em desenvolvimento!');
 });
 
 // Botões Apoiar
